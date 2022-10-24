@@ -1,0 +1,16 @@
+{
+  "name": "openapi-cod-gen",
+  "version": "0.0.1",
+  "description": "API code-gen",
+  "main": "index.js",
+  "scripts": {
+    "example": "node index.js -i ./example.yaml",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dontmeway",
+  "license": "MIT",
+  "dependencies": {
+    "@apidevtools/json-schema-ref-parser": "^9.0.9",
+    "commander": "^9.4.1"
+  }
+}
