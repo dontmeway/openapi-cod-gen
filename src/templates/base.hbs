@@ -1,0 +1,9 @@
+export const request = async ({url, method}) => { 
+    const response = await fetch(url, {method}) 
+    const data = await response.json() 
+    return { 
+        ok: response.ok, 
+        body: data, 
+        status: response.status 
+    } 
+}
