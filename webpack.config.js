@@ -1,6 +1,14 @@
+const path = require("path");
+
 module.exports = {
   entry: "./src/index.js",
-  mode: "development",
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "main.js",
+    library: { type: "commonjs-module" },
+  },
+
+  mode: "production",
   resolve: {
     extensions: [".js"],
     fallback: {

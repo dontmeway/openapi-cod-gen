@@ -11,6 +11,11 @@ const params = program
   .parse(process.argv)
   .opts();
 
-const { generate } = require(path.resolve(__dirname, "../dist/main.js"));
+const buildPath = path.resolve(__dirname, "../dist/main.js");
 
-console.log("hello");
+const MyCodGen = require(buildPath);
+
+if (MyCodGen) {
+  MyCodGen.default.generate(params);
+  console.log(MyCodGen.default.generate);
+}
