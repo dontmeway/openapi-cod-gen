@@ -1,0 +1,77 @@
+import { Config } from './config'
+
+type Request = {
+    path: string
+    method: string
+    headers?: Record<string, any>
+    body?: Record<string, any>
+}
+
+type Answer<T = unknown> = {
+    status: number
+    ok: boolean
+    body: T
+}
+
+type ResponseResult<Data> = string | Record<string, Data> | null
+
+export const request = async ({ method, ...params}: Request) => { 
+    const body = getBody(params.body)
+    const headers = getHeaders(params.headers)
+    const path = getPath(params.path)
+
+    const response = await fetch(path, { method, headers, body }) 
+
+    const answer = await getResponseAnswer(response) 
+    
+    return { 
+        ok: response.ok, 
+        status: response.status,
+        body: answer, 
+    } 
+}
+
+
+function getBody(body: Request['body']) {
+    if (body) {
+        return JSON.stringify(body)
+    } 
+
+    return undefined
+}
+
+function getHeaders(headers: Request['headers']) {
+    let defaultHeaders = {
+        'Content-type': 'application/json',
+    }
+    defaultHeaders = Config.HEADERS ? {...defaultHeaders, ...Config.HEADERS} : defaultHeaders
+    
+    if (headers) {
+        return {...defaultHeaders, ...headers}
+    }
+
+    return defaultHeaders
+}
+
+function getPath(path: Request['path']) {
+    if (typeof Config.BASE_URL !== 'string') throw Error('Config.BASE_URL can only be "string" type')
+
+    const version = 'v${Config.VERSION ?? 1}' 
+
+    return `${Config.BASE_URL}/${version}/${path}`
+}
+
+async function getResponseAnswer<Data>(response: Response): Promise<ResponseResult<Data>> {
+  if (contentIs(response.headers, 'application/json')) {
+    return response.json()
+  }
+  const hasEmptyResponse = !response.headers.get('content-type')
+  if (hasEmptyResponse) {
+    return null
+  }
+  return response.text()
+}
+
+function contentIs(headers: Headers, type: string): boolean {
+  return headers.get('content-type')?.includes(type) ?? false
+}
