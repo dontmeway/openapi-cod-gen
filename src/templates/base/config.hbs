@@ -1,16 +1,13 @@
-type Version = 1 | 2
 type Headers = Record<string, any>
 
 export type ConfigType = {
     BASE_URL: string
-    VERSION: Version
     LOCALE?: string
     HEADERS?: Headers
 }
 
 export const Config: ConfigType = {
-    BASE_URL: '{{{baseUrl}}}',
-    VERSION: {{{version}}},
+    BASE_URL: '',
     LOCALE: undefined,
     HEADERS: undefined,
 }

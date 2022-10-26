@@ -12,17 +12,18 @@
   ],
   "scripts": {
     "clear": "rimraf ./dist ./node_modules/.cache ./example*",
-    "example": "node index.js -i ./openapi-example.yaml -o ./example",
+    "example": "node index.js -i ./medhub-api.yaml -o ./example",
     "build": "rollup --config --environment NODE_ENV:production",
-    "example:build": "node ./bin/index.js -i ./openapi-example.yaml -o ./example-build"
+    "api": "node ./bin/index.js -i ./medhub-api.yaml -o ./example-build"
   },
   "author": "dontmeway",
   "license": "MIT",
   "dependencies": {
-    "json-schema-ref-parser": "^9.0.9",
     "commander": "^9.4.1",
+    "effector": "^22.3.0",
     "fs-extra": "^10.1.0",
-    "handlebars": "^4.7.7"
+    "handlebars": "^4.7.7",
+    "json-schema-ref-parser": "^9.0.9"
   },
   "devDependencies": {
     "@babel/cli": "^7.19.3",

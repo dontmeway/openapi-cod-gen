@@ -1,3 +1,5 @@
+import { createEffect } from 'effector'
+
 import { Config } from './config'
 
 type Request = {
@@ -15,7 +17,7 @@ type Answer<T = unknown> = {
 
 type ResponseResult<Data> = string | Record<string, Data> | null
 
-export const request = async ({ method, ...params}: Request) => { 
+const requestInternal = async ({ method, ...params}: Request) => { 
     const body = getBody(params.body)
     const headers = getHeaders(params.headers)
     const path = getPath(params.path)
@@ -31,6 +33,7 @@ export const request = async ({ method, ...params}: Request) => {
     } 
 }
 
+export const request = createEffect<Request, Answer, Answer>(requestInternal)
 
 function getBody(body: Request['body']) {
     if (body) {
@@ -56,9 +59,7 @@ function getHeaders(headers: Request['headers']) {
 function getPath(path: Request['path']) {
     if (typeof Config.BASE_URL !== 'string') throw Error('Config.BASE_URL can only be "string" type')
 
-    const version = 'v${Config.VERSION ?? 1}' 
-
-    return `${Config.BASE_URL}/${version}/${path}`
+    return `${Config.BASE_URL}/${path}`
 }
 
 async function getResponseAnswer<Data>(response: Response): Promise<ResponseResult<Data>> {
