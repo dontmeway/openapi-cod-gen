@@ -5,6 +5,7 @@ import { parseOpenApiSpec } from "./lib/parse-spec";
 import { createFolders } from "./lib/create-folders";
 import { parser } from "./open-api";
 import { registerHandleBars } from "./lib/register-handlebars";
+import { formatCode, formatIndentation } from "./lib/format";
 
 type Generate = {
   input: string;
@@ -25,13 +26,13 @@ const generate = async ({ input, output }: Generate) => {
 
   for (const [domain, domainRequests] of Object.entries(requests)) {
     await mkdir(resolve(outputPath, "./domains", domain));
-    for (const request of domainRequests) {
-      const path = resolve(outputPath, `./${domain}`, "index.ts");
-      await writeFile(
-        resolve(outputPath, `./domains/${domain}`, "index.ts"),
-        domainRequestFile(request)
-      );
-    }
+
+    const template = domainRequestFile({ requests: domainRequests });
+
+    await writeFile(
+      resolve(outputPath, `./domains/${domain}`, "index.ts"),
+      formatIndentation(formatCode(template))
+    );
   }
 };
 

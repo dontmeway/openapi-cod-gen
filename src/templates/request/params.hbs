@@ -1,0 +1,7 @@
+{{#if params.params}}
+  {
+  {{#each params.params}}
+    {{{this.name}}},
+  {{/each}}
+  }:{{{this.paramsTypeName}}}
+{{/if}}

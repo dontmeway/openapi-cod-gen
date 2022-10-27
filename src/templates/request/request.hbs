@@ -1,8 +1,32 @@
 {{>importBaseRequest}}
 
-export const {{{name}}} = () => {
-    return request({
-        method: '{{{method}}}',
-        path: '{{{path}}}'
-    })
-}
+{{#each requests}}
+
+    type {{{this.paramsTypeName}}} = {
+        {{#each this.params.params}}
+            {{{this.name}}}{{#unless this.required}}?{{/unless}}: {{{this.type}}}{{#if this.nullable}} | null{{/if}}
+        {{/each}}
+    }
+
+    export const {{{this.name}}} = ({{>params}}) => {
+        return request({
+            method: '{{{this.method}}}',
+            url: '{{{this.path}}}',
+            {{#if this.params.queryParams}}
+                query: {
+                    {{#each this.params.queryParams}}
+                        '{{this.baseName}}': {{this.name}},
+                    {{/each}}
+                },
+            {{/if}}
+            {{#if this.params.pathParams}}
+                path: {
+                    {{#each this.params.pathParams}}
+                        '{{this.baseName}}': {{this.name}},
+                    {{/each}}
+                },
+            {{/if}}
+        })
+    }
+
+{{/each}}

@@ -3,10 +3,12 @@ import { createEffect } from 'effector'
 import { Config } from './config'
 
 type Request = {
-    path: string
+    url: string
     method: string
     headers?: Record<string, any>
     body?: Record<string, any>
+    query?: Record<string, any>
+    path?: Record<string, any>
 }
 
 type Answer<T = unknown> = {
@@ -20,7 +22,7 @@ type ResponseResult<Data> = string | Record<string, Data> | null
 const requestInternal = async ({ method, ...params}: Request) => { 
     const body = getBody(params.body)
     const headers = getHeaders(params.headers)
-    const path = getPath(params.path)
+    const path = getPath(params.url)
 
     const response = await fetch(path, { method, headers, body }) 
 
@@ -56,10 +58,10 @@ function getHeaders(headers: Request['headers']) {
     return defaultHeaders
 }
 
-function getPath(path: Request['path']) {
+function getPath(url: Request['url']) {
     if (typeof Config.BASE_URL !== 'string') throw Error('Config.BASE_URL can only be "string" type')
 
-    return `${Config.BASE_URL}/${path}`
+    return `${Config.BASE_URL}/${url}`
 }
 
 async function getResponseAnswer<Data>(response: Response): Promise<ResponseResult<Data>> {
