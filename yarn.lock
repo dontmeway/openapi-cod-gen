@@ -1573,6 +1573,11 @@ jsonfile@^6.0.1:
   optionalDependencies:
     graceful-fs "^4.1.6"
 
+just-kebab-case@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/just-kebab-case/-/just-kebab-case-4.1.1.tgz#f4ba3407f3b6fa6627f6e6e7a7d4de134fa1b033"
+  integrity sha512-2cssQ+98pufD1ifjlz64SkXbeySNgkx76/fjpQyhD3D4iAya+mWoHxqKp2U/Sn6r3DNsZ1GdbIBV6IClAG66GA==
+
 lodash.debounce@^4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"

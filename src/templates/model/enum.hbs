@@ -1,0 +1,3 @@
+{{#each enum}}
+    | {{#equals this.type 'string'}}'{{{this.value}}}'{{else}}{{{this.value}}}{{/equals}}
+{{/each}}

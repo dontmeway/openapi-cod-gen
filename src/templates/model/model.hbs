@@ -1,0 +1,4 @@
+export type {{{schemaName}}} = {{#equals type 'object'}}{{>dictType}}
+{{else equals type 'enum'}}
+{{>enumType}}
+{{/equals}}

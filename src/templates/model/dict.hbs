@@ -1,0 +1,8 @@
+{
+  {{#if props}}
+    {{#each props}}
+      {{{this.name}}}{{#unless this.required}}?{{/unless}}:
+      {{{this.type}}}{{#if this.nullable}} | null{{/if}}
+    {{/each}}
+  {{/if}}
+}

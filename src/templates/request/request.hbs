@@ -1,5 +1,10 @@
 {{>importBaseRequest}}
+{{#each imports}}
+import type {
+    {{{this.name}}}
+    } from '../../models/{{{this.from}}}';
 
+{{/each}}
 {{#each requests}}
 
     type {{{this.paramsTypeName}}} = {
@@ -25,6 +30,9 @@
                         '{{this.baseName}}': {{this.name}},
                     {{/each}}
                 },
+            {{/if}}
+            {{#if this.requestBody}}
+                body: {{{this.requestBody}}}
             {{/if}}
         })
     }

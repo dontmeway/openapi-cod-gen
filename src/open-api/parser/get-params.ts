@@ -1,10 +1,29 @@
 import camelCase from 'camelcase';
+import { OpenApiOperation } from '../interfaces/OpenApiOperation';
 
 import type { OpenApiParameter } from '../interfaces/OpenApiParameter';
 import type { RequestParams } from './types';
 
-export const getParams = (params: OpenApiParameter[]): RequestParams => {
-  const allParams = params.map((next) => {
+export const getParams = (
+  operation: OpenApiOperation | null,
+): RequestParams => {
+  if (!operation)
+    return {
+      params: [],
+      pathParams: [],
+      queryParams: [],
+    };
+
+  const allParams = getAllParams(operation.parameters ?? []);
+
+  const queryParams = allParams.filter((param) => param.in === 'query');
+  const pathParams = allParams.filter((param) => param.in === 'path');
+
+  return { params: allParams, queryParams, pathParams };
+};
+
+const getAllParams = (params: OpenApiParameter[]) =>
+  params.map((next) => {
     const paramName = camelCase(next.name);
     const param = {
       in: next.in,
@@ -17,12 +36,6 @@ export const getParams = (params: OpenApiParameter[]): RequestParams => {
 
     return param;
   });
-
-  const queryParams = allParams.filter((param) => param.in === 'query');
-  const pathParams = allParams.filter((param) => param.in === 'path');
-
-  return { params: allParams, queryParams, pathParams };
-};
 
 const getType = (input: string | string[] | undefined) => {
   if (!input) return 'any';
