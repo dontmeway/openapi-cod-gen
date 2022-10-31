@@ -1,5 +1,5 @@
 {
-  "name": "openapi-cod-gen",
+  "name": "@medhub-systems/openapi-codegen",
   "version": "0.0.1",
   "description": "API code-gen",
   "main": "dist/main.js",
