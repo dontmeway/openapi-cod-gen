@@ -1,9 +1,9 @@
-import type { Dictionary } from "../../lib/types";
-import type { WithEnumExtension } from "./Extensions/WithEnumExtension";
-import type { OpenApiDiscriminator } from "./OpenApiDiscriminator";
-import type { OpenApiExternalDocs } from "./OpenApiExternalDocs";
-import type { OpenApiReference } from "./OpenApiReference";
-import type { OpenApiXml } from "./OpenApiXml";
+import type { Dictionary } from '../../lib/types';
+import type { WithEnumExtension } from './Extensions/WithEnumExtension';
+import type { OpenApiDiscriminator } from './OpenApiDiscriminator';
+import type { OpenApiExternalDocs } from './OpenApiExternalDocs';
+import type { OpenApiReference } from './OpenApiReference';
+import type { OpenApiXml } from './OpenApiXml';
 
 /**
  * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#schemaObject
@@ -35,17 +35,17 @@ export interface OpenApiSchema extends OpenApiReference, WithEnumExtension {
   additionalProperties?: boolean | OpenApiSchema;
   description?: string;
   format?:
-    | "int32"
-    | "int64"
-    | "float"
-    | "double"
-    | "string"
-    | "boolean"
-    | "byte"
-    | "binary"
-    | "date"
-    | "date-time"
-    | "password";
+    | 'int32'
+    | 'int64'
+    | 'float'
+    | 'double'
+    | 'string'
+    | 'boolean'
+    | 'byte'
+    | 'binary'
+    | 'date'
+    | 'date-time'
+    | 'password';
   default?: any;
   nullable?: boolean;
   discriminator?: OpenApiDiscriminator;

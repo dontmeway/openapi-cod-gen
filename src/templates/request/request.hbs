@@ -1,9 +1,9 @@
 {{>importBaseRequest}}
+
 {{#each imports}}
 import type {
     {{{this.name}}}
     } from '../../models/{{{this.from}}}';
-
 {{/each}}
 {{#each requests}}
 

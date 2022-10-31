@@ -29,6 +29,9 @@ export type ModelProp = {
   type: string;
   required: boolean;
   nullable: boolean;
+  ref: 'primitive' | 'instance' | 'array';
+  shouldImport: boolean;
+  imports: string[];
 };
 
 export type Model = {
@@ -37,6 +40,7 @@ export type Model = {
   type: string;
   props: ModelProp[];
   enum?: { value: string | number; type: 'string' | 'number' }[];
+  imports: { typeName: string; from: string }[];
 };
 
 export type RequestImport = {

@@ -22,7 +22,7 @@ type ResponseResult<Data> = string | Record<string, Data> | null
 const requestInternal = async ({ method, ...params}: Request) => { 
     const body = getBody(params.body)
     const headers = getHeaders(params.headers)
-    const path = getPath(params.url)
+    const path = getPath(params)
 
     const response = await fetch(path, { method, headers, body }) 
 
@@ -58,10 +58,40 @@ function getHeaders(headers: Request['headers']) {
     return defaultHeaders
 }
 
-function getPath(url: Request['url']) {
-    if (typeof Config.BASE_URL !== 'string') throw Error('Config.BASE_URL can only be "string" type')
+function getPath({
+  url,
+  path = {},
+  query = {},
+}: Pick<Request, 'url' | 'path' | 'query'>) {
+  if (typeof Config.BASE_URL !== 'string')
+    throw Error('Config.BASE_URL can only be "string" type');
 
-    return `${Config.BASE_URL}/${url}`
+  let parsed = url;
+
+  if (Object.keys(path).length > 0) {
+    parsed = url
+      .split('/')
+      .map((str) => {
+        if (str.startsWith('{') && str.endsWith('}')) {
+          const paramKey = str.replace('{', '').replace('}', '');
+
+          return path[paramKey];
+        }
+
+        return str;
+      })
+      .join('/');
+  }
+
+  if (Object.keys(query).length > 0) {
+    const stringifiedQuery = Object.entries(query)
+      .filter(([_, value]) => !!value)
+      .map(([key, value]) => `${key}=${value}`)
+      .join('&');
+    parsed = parsed + '?' + stringifiedQuery;
+  }
+
+  return `${Config.BASE_URL}/${parsed}`;
 }
 
 async function getResponseAnswer<Data>(response: Response): Promise<ResponseResult<Data>> {

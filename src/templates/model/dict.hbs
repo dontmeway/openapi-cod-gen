@@ -2,7 +2,7 @@
   {{#if props}}
     {{#each props}}
       {{{this.name}}}{{#unless this.required}}?{{/unless}}:
-      {{{this.type}}}{{#if this.nullable}} | null{{/if}}
+      {{#equals this.ref 'array'}}Array<{{{this.type}}}>{{else}}{{{this.type}}}{{/equals}}{{#if this.nullable}} | null{{/if}}
     {{/each}}
   {{/if}}
 }

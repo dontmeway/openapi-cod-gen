@@ -1,7 +1,7 @@
-import type { Dictionary } from "../../lib/types";
-import type { OpenApiExample } from "./OpenApiExample";
-import type { OpenApiReference } from "./OpenApiReference";
-import type { OpenApiSchema } from "./OpenApiSchema";
+import type { Dictionary } from '../../lib/types';
+import type { OpenApiExample } from './OpenApiExample';
+import type { OpenApiReference } from './OpenApiReference';
+import type { OpenApiSchema } from './OpenApiSchema';
 
 /**
  * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#headerObject

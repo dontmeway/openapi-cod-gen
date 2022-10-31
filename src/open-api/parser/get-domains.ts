@@ -1,5 +1,5 @@
-import { CONSTANTS } from "../../lib/constants";
-import { OpenApiPath } from "../interfaces/OpenApiPath";
+import { CONSTANTS } from '../../lib/constants';
+import { OpenApiPath } from '../interfaces/OpenApiPath';
 
 type Operations = typeof CONSTANTS.operations;
 

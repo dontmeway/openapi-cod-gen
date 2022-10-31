@@ -1,6 +1,6 @@
-import type { Dictionary } from "../../lib/types";
-import type { OpenApiMediaType } from "./OpenApiMediaType";
-import type { OpenApiReference } from "./OpenApiReference";
+import type { Dictionary } from '../../lib/types';
+import type { OpenApiMediaType } from './OpenApiMediaType';
+import type { OpenApiReference } from './OpenApiReference';
 
 /**
  * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#requestBodyObject

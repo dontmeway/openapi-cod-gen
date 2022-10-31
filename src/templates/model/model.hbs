@@ -1,3 +1,9 @@
+{{#if imports}}
+    {{#each imports}}
+        import type { {{{this.typeName}}} } from './{{{this.from}}}';
+    {{/each}}
+{{/if}}
+
 export type {{{schemaName}}} = {{#equals type 'object'}}{{>dictType}}
 {{else equals type 'enum'}}
 {{>enumType}}

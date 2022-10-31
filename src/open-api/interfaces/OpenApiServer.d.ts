@@ -1,5 +1,5 @@
-import type { Dictionary } from "../../lib/types";
-import type { OpenApiServerVariable } from "./OpenApiServerVariable";
+import type { Dictionary } from '../../lib/types';
+import type { OpenApiServerVariable } from './OpenApiServerVariable';
 
 /**
  * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#serverObject
