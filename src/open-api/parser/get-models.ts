@@ -25,20 +25,16 @@ export const getModels = (openApi: OpenApi) => {
         model.props = getProps(schema);
         model.props.forEach((prop) => {
           if (prop.shouldImport) {
-            if (
-              !model.imports.some(
-                ({ typeName }) => !prop.imports.includes(typeName),
-              )
-            ) {
-              const imports = model.imports.concat(
-                prop.imports.map((type) => ({
-                  from: kebabCase(type),
-                  typeName: type,
-                })),
-              );
-
-              model.imports = imports;
-            }
+            prop.imports.forEach((propImport) => {
+              if (
+                model.imports.every(({ typeName }) => propImport !== typeName)
+              ) {
+                model.imports.push({
+                  from: kebabCase(propImport),
+                  typeName: propImport,
+                });
+              }
+            });
           }
         });
         models[model.modelFileName] = model;
@@ -55,6 +51,7 @@ export const getModels = (openApi: OpenApi) => {
       models[model.modelFileName] = model;
     }
   });
+
   return models;
 };
 

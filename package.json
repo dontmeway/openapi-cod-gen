@@ -14,7 +14,7 @@
     "clear": "rimraf ./dist ./node_modules/.cache ./example*",
     "example": "node index.js -i ./medhub-api.yaml -o ./example",
     "build": "rollup --config --environment NODE_ENV:production",
-    "api": "node ./bin/index.js -i ./medhub-api.yaml -o ./example-build && prettier --config ./.prettierrc.js --write ./example-build/**/**/*.ts"
+    "api": "node ./bin/index.js -i ./openapi.json -o ./example-build && prettier --config ./.prettierrc.js --write ./example-build/**/**/*.ts"
   },
   "author": "dontmeway",
   "license": "MIT",

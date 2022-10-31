@@ -7,11 +7,13 @@ import type {
 {{/each}}
 {{#each requests}}
 
-    type {{{this.paramsTypeName}}} = {
-        {{#each this.params.params}}
-            {{{this.name}}}{{#unless this.required}}?{{/unless}}: {{{this.type}}}{{#if this.nullable}} | null{{/if}}
-        {{/each}}
-    }
+    {{#if this.params.params}}
+        type {{{this.paramsTypeName}}} = {
+            {{#each this.params.params}}
+                {{{this.name}}}{{#unless this.required}}?{{/unless}}: {{{this.type}}}{{#if this.nullable}} | null{{/if}}
+            {{/each}}
+        }
+    {{/if}}
 
     export const {{{this.name}}} = ({{>params}}) => {
         return request({

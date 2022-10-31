@@ -1,0 +1,831 @@
+{
+  "address": {
+    "schemaName": "Address",
+    "modelFileName": "address",
+    "type": "object",
+    "props": [
+      {
+        "name": "id",
+        "required": true,
+        "nullable": false,
+        "type": "number",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "street",
+        "required": true,
+        "nullable": false,
+        "type": "Street",
+        "ref": "instance",
+        "shouldImport": true,
+        "imports": [
+          "Street"
+        ]
+      },
+      {
+        "name": "flat",
+        "required": false,
+        "nullable": false,
+        "type": "string",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "floor",
+        "required": false,
+        "nullable": false,
+        "type": "number",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "building",
+        "required": true,
+        "nullable": false,
+        "type": "string",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      }
+    ],
+    "imports": [
+      {
+        "from": "street",
+        "typeName": "Street"
+      }
+    ]
+  },
+  "appointment-slot": {
+    "schemaName": "AppointmentSlot",
+    "modelFileName": "appointment-slot",
+    "type": "object",
+    "props": [
+      {
+        "name": "start_datetime",
+        "required": true,
+        "nullable": false,
+        "type": "string",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "interval",
+        "required": true,
+        "nullable": false,
+        "type": "number",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "is_vacant",
+        "required": true,
+        "nullable": false,
+        "type": "boolean",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "cabinet",
+        "required": true,
+        "nullable": false,
+        "type": "CabinetBase",
+        "ref": "instance",
+        "shouldImport": true,
+        "imports": [
+          "CabinetBase"
+        ]
+      }
+    ],
+    "imports": [
+      {
+        "from": "cabinet-base",
+        "typeName": "CabinetBase"
+      }
+    ]
+  },
+  "appointment-statuses": {
+    "schemaName": "AppointmentStatuses",
+    "modelFileName": "appointment-statuses",
+    "type": "enum",
+    "props": [],
+    "imports": [],
+    "enum": [
+      {
+        "type": "string",
+        "value": "pending"
+      },
+      {
+        "type": "string",
+        "value": "in_progress"
+      },
+      {
+        "type": "string",
+        "value": "completed"
+      },
+      {
+        "type": "string",
+        "value": "absence"
+      },
+      {
+        "type": "string",
+        "value": "cancelled"
+      }
+    ]
+  },
+  "appointment-with-specialist-booking-in": {
+    "schemaName": "AppointmentWithSpecialistBookingIn",
+    "modelFileName": "appointment-with-specialist-booking-in",
+    "type": "object",
+    "props": [
+      {
+        "name": "organization_id",
+        "required": true,
+        "nullable": false,
+        "type": "string",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "specialist_id",
+        "required": true,
+        "nullable": false,
+        "type": "number",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "cabinet_id",
+        "required": true,
+        "nullable": false,
+        "type": "number",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "patient_med_card_id",
+        "required": true,
+        "nullable": false,
+        "type": "number",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "scheduled_start",
+        "required": true,
+        "nullable": false,
+        "type": "string",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "scheduled_end",
+        "required": true,
+        "nullable": false,
+        "type": "string",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      }
+    ],
+    "imports": []
+  },
+  "appointment-with-specialist-booking-out": {
+    "schemaName": "AppointmentWithSpecialistBookingOut",
+    "modelFileName": "appointment-with-specialist-booking-out",
+    "type": "object",
+    "props": [
+      {
+        "name": "id",
+        "required": true,
+        "nullable": false,
+        "type": "number",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "status",
+        "required": true,
+        "nullable": false,
+        "type": "AppointmentStatuses",
+        "ref": "instance",
+        "shouldImport": true,
+        "imports": [
+          "AppointmentStatuses"
+        ]
+      },
+      {
+        "name": "organization",
+        "required": true,
+        "nullable": false,
+        "type": "OrganizationBase",
+        "ref": "instance",
+        "shouldImport": true,
+        "imports": [
+          "OrganizationBase"
+        ]
+      },
+      {
+        "name": "cabinet",
+        "required": true,
+        "nullable": false,
+        "type": "CabinetBase",
+        "ref": "instance",
+        "shouldImport": true,
+        "imports": [
+          "CabinetBase"
+        ]
+      },
+      {
+        "name": "scheduled_start",
+        "required": true,
+        "nullable": false,
+        "type": "string",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "scheduled_end",
+        "required": true,
+        "nullable": false,
+        "type": "string",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "specialist",
+        "required": true,
+        "nullable": false,
+        "type": "WorkplaceBase",
+        "ref": "instance",
+        "shouldImport": true,
+        "imports": [
+          "WorkplaceBase"
+        ]
+      }
+    ],
+    "imports": [
+      {
+        "from": "appointment-statuses",
+        "typeName": "AppointmentStatuses"
+      }
+    ]
+  },
+  "appointment-with-specialist-live-out": {
+    "schemaName": "AppointmentWithSpecialistLiveOut",
+    "modelFileName": "appointment-with-specialist-live-out",
+    "type": "object",
+    "props": [
+      {
+        "name": "id",
+        "required": true,
+        "nullable": false,
+        "type": "number",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "status",
+        "required": true,
+        "nullable": false,
+        "type": "AppointmentStatuses",
+        "ref": "instance",
+        "shouldImport": true,
+        "imports": [
+          "AppointmentStatuses"
+        ]
+      },
+      {
+        "name": "organization",
+        "required": true,
+        "nullable": false,
+        "type": "OrganizationBase",
+        "ref": "instance",
+        "shouldImport": true,
+        "imports": [
+          "OrganizationBase"
+        ]
+      },
+      {
+        "name": "cabinet",
+        "required": true,
+        "nullable": false,
+        "type": "CabinetBase",
+        "ref": "instance",
+        "shouldImport": true,
+        "imports": [
+          "CabinetBase"
+        ]
+      },
+      {
+        "name": "queue_number",
+        "required": true,
+        "nullable": false,
+        "type": "number",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "specialist",
+        "required": true,
+        "nullable": false,
+        "type": "WorkplaceBase",
+        "ref": "instance",
+        "shouldImport": true,
+        "imports": [
+          "WorkplaceBase"
+        ]
+      }
+    ],
+    "imports": [
+      {
+        "from": "appointment-statuses",
+        "typeName": "AppointmentStatuses"
+      }
+    ]
+  },
+  "cabinet-base": {
+    "schemaName": "CabinetBase",
+    "modelFileName": "cabinet-base",
+    "type": "object",
+    "props": [
+      {
+        "name": "id",
+        "required": true,
+        "nullable": false,
+        "type": "number",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "cabinet_number",
+        "required": true,
+        "nullable": false,
+        "type": "number",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      }
+    ],
+    "imports": []
+  },
+  "http-validation-error": {
+    "schemaName": "HTTPValidationError",
+    "modelFileName": "http-validation-error",
+    "type": "object",
+    "props": [
+      {
+        "name": "detail",
+        "required": false,
+        "nullable": false,
+        "type": "ValidationError",
+        "ref": "array",
+        "shouldImport": true,
+        "imports": [
+          "ValidationError"
+        ]
+      }
+    ],
+    "imports": [
+      {
+        "from": "validation-error",
+        "typeName": "ValidationError"
+      }
+    ]
+  },
+  "message": {
+    "schemaName": "Message",
+    "modelFileName": "message",
+    "type": "object",
+    "props": [
+      {
+        "name": "message",
+        "required": true,
+        "nullable": false,
+        "type": "string",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      }
+    ],
+    "imports": []
+  },
+  "organization": {
+    "schemaName": "Organization",
+    "modelFileName": "organization",
+    "type": "object",
+    "props": [
+      {
+        "name": "id",
+        "required": true,
+        "nullable": false,
+        "type": "string",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "name",
+        "required": true,
+        "nullable": false,
+        "type": "string",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "address",
+        "required": true,
+        "nullable": false,
+        "type": "Address",
+        "ref": "instance",
+        "shouldImport": true,
+        "imports": [
+          "Address"
+        ]
+      },
+      {
+        "name": "phone_number",
+        "required": true,
+        "nullable": false,
+        "type": "string",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "existing_specializations",
+        "required": true,
+        "nullable": false,
+        "type": "OrganizationSpecializationInfo",
+        "ref": "array",
+        "shouldImport": true,
+        "imports": [
+          "OrganizationSpecializationInfo"
+        ]
+      }
+    ],
+    "imports": [
+      {
+        "from": "address",
+        "typeName": "Address"
+      }
+    ]
+  },
+  "organization-base": {
+    "schemaName": "OrganizationBase",
+    "modelFileName": "organization-base",
+    "type": "object",
+    "props": [
+      {
+        "name": "id",
+        "required": true,
+        "nullable": false,
+        "type": "string",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "name",
+        "required": true,
+        "nullable": false,
+        "type": "string",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      }
+    ],
+    "imports": []
+  },
+  "organization-list-item": {
+    "schemaName": "OrganizationListItem",
+    "modelFileName": "organization-list-item",
+    "type": "object",
+    "props": [
+      {
+        "name": "id",
+        "required": true,
+        "nullable": false,
+        "type": "string",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "name",
+        "required": true,
+        "nullable": false,
+        "type": "string",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "address",
+        "required": true,
+        "nullable": false,
+        "type": "Address",
+        "ref": "instance",
+        "shouldImport": true,
+        "imports": [
+          "Address"
+        ]
+      }
+    ],
+    "imports": [
+      {
+        "from": "address",
+        "typeName": "Address"
+      }
+    ]
+  },
+  "organization-specialization-info": {
+    "schemaName": "OrganizationSpecializationInfo",
+    "modelFileName": "organization-specialization-info",
+    "type": "object",
+    "props": [
+      {
+        "name": "id",
+        "required": true,
+        "nullable": false,
+        "type": "number",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "name",
+        "required": true,
+        "nullable": false,
+        "type": "string",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "count",
+        "required": true,
+        "nullable": false,
+        "type": "number",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      }
+    ],
+    "imports": []
+  },
+  "profile": {
+    "schemaName": "Profile",
+    "modelFileName": "profile",
+    "type": "object",
+    "props": [
+      {
+        "name": "id",
+        "required": true,
+        "nullable": false,
+        "type": "number",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "med_id",
+        "required": true,
+        "nullable": false,
+        "type": "string",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "med_card_id",
+        "required": true,
+        "nullable": false,
+        "type": "number",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "birth_date",
+        "required": true,
+        "nullable": false,
+        "type": "string",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "first_name",
+        "required": true,
+        "nullable": false,
+        "type": "string",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "last_name",
+        "required": true,
+        "nullable": false,
+        "type": "string",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "patronymic",
+        "required": false,
+        "nullable": false,
+        "type": "string",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "phone_number",
+        "required": true,
+        "nullable": false,
+        "type": "string",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      }
+    ],
+    "imports": []
+  },
+  "profile-in": {
+    "schemaName": "ProfileIn",
+    "modelFileName": "profile-in",
+    "type": "object",
+    "props": [
+      {
+        "name": "birth_date",
+        "required": true,
+        "nullable": false,
+        "type": "string",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "first_name",
+        "required": true,
+        "nullable": false,
+        "type": "string",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "last_name",
+        "required": true,
+        "nullable": false,
+        "type": "string",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "patronymic",
+        "required": false,
+        "nullable": false,
+        "type": "string",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "gender_id",
+        "required": true,
+        "nullable": false,
+        "type": "number",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      }
+    ],
+    "imports": []
+  },
+  "street": {
+    "schemaName": "Street",
+    "modelFileName": "street",
+    "type": "object",
+    "props": [
+      {
+        "name": "id",
+        "required": true,
+        "nullable": false,
+        "type": "number",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "name",
+        "required": true,
+        "nullable": false,
+        "type": "string",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      }
+    ],
+    "imports": []
+  },
+  "validation-error": {
+    "schemaName": "ValidationError",
+    "modelFileName": "validation-error",
+    "type": "object",
+    "props": [
+      {
+        "name": "loc",
+        "required": true,
+        "nullable": false,
+        "type": "unknown",
+        "ref": "array",
+        "shouldImport": true,
+        "imports": [
+          "unknown"
+        ]
+      },
+      {
+        "name": "msg",
+        "required": true,
+        "nullable": false,
+        "type": "string",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "type",
+        "required": true,
+        "nullable": false,
+        "type": "string",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      }
+    ],
+    "imports": [
+      {
+        "from": "unknown",
+        "typeName": "unknown"
+      }
+    ]
+  },
+  "workplace-base": {
+    "schemaName": "WorkplaceBase",
+    "modelFileName": "workplace-base",
+    "type": "object",
+    "props": [
+      {
+        "name": "id",
+        "required": true,
+        "nullable": false,
+        "type": "number",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "name",
+        "required": true,
+        "nullable": false,
+        "type": "string",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      },
+      {
+        "name": "specialization_name",
+        "required": true,
+        "nullable": false,
+        "type": "string",
+        "ref": "primitive",
+        "shouldImport": false,
+        "imports": []
+      }
+    ],
+    "imports": []
+  }
+}
